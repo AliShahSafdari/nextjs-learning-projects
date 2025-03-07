@@ -12,7 +12,7 @@ export default async function showUser(){
         {
           allUser.map(
             (user, index)=>(
-              <li key={index}> {user.name}</li>
+              <li key={index}> {user.name} </li>
             )
           )
         }

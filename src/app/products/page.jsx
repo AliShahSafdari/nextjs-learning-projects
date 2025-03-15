@@ -24,6 +24,16 @@ export default function ProductPage(){
         .catch(error=> console.error(error))
     }
 
+    function handleDeleteProduct ( nameProduct){
+        fetch("http://localhost:3000/api/products",
+            {
+                method: "DELETE",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({name:nameProduct})
+            })
+            .then(fetchProduct)
+        .catch(error=> console.error(error))
+    }
     useEffect(
         ()=> fetchProduct(), 
     [])
@@ -32,7 +42,7 @@ export default function ProductPage(){
             <h1>Products List: </h1>
             <ul>
                 { products.map(
-                    (product, index)=> <li key={index}> {product.name} - {product.price}</li>
+                    (product, index)=> <li key={index}> {product.name} - {product.price} - <button onClick={()=> handleDeleteProduct(product.name)}>Delete</button></li>
                 )}
             </ul>
             <h2>Add New Product:</h2>
